@@ -17,7 +17,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\bx.modbus.client\AdvancedModbusClient.cs" Link="AdvancedModbusClient.cs" />
     <Compile Include="..\bx.modbus.client\ModbusClient.cs" Link="ModbusClient.cs" />
     <Compile Include="..\bx.modbus.client\ModbusServer.cs" Link="ModbusServer.cs" />
     <Compile Include="..\bx.modbus.client\StoreLogData.cs" Link="StoreLogData.cs" />

@@ -345,7 +345,7 @@ namespace bx.modbus
                     catch (Exception) { }
                 }             
                 tcpHandler = new TCPHandler(port);
-                if (debug) StoreLogData.Instance.Store("bullxitModbus Server listing for incomming data at Port " + port, System.DateTime.Now);
+                if (debug) StoreLogData.Instance.Store("bullxit Modbus Server listing for incomming data at Port " + port, System.DateTime.Now);
                 tcpHandler.dataChanged += new TCPHandler.DataChanged(ProcessReceivedData);
                 tcpHandler.numberOfClientsChanged += new TCPHandler.NumberOfClientsChanged(numberOfClientsChanged);
             }
@@ -357,7 +357,7 @@ namespace bx.modbus
                     if (udpClient == null | PortChanged)
                     {
                         udpClient = new UdpClient(port);
-                        if (debug) StoreLogData.Instance.Store("bullxitModbus Server listing for incomming data at Port " + port, System.DateTime.Now);
+                        if (debug) StoreLogData.Instance.Store("bullxit Modbus Server listing for incomming data at Port " + port, System.DateTime.Now);
                         udpClient.Client.ReceiveTimeout = 1000;
                         iPEndPoint = new IPEndPoint(IPAddress.Any, port);
                         PortChanged = false;                      
@@ -385,7 +385,7 @@ namespace bx.modbus
             	{
             		if (serialport == null)
             		{
-                        if (debug) StoreLogData.Instance.Store("bullxitModbus RTU-Server listing for incomming data at Serial Port " + serialPort, System.DateTime.Now);
+                        if (debug) StoreLogData.Instance.Store("bullxit Modbus RTU-Server listing for incomming data at Serial Port " + serialPort, System.DateTime.Now);
                         serialport = new SerialPort();
             			serialport.PortName = serialPort;
                         serialport.BaudRate = this.baudrate;

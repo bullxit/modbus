@@ -58,7 +58,7 @@ namespace bx.modbus
 			if (debug) StoreLogData.Instance.Store("modbus library initialized for Modbus-TCP, IPAddress: " + ipAddress + ", Port: "+port ,System.DateTime.Now);
 #if (!COMMERCIAL)
             Console.WriteLine("bx client library version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString());
-            Console.WriteLine("Copyright (c) Formula Decimal");
+            Console.WriteLine("Copyright (c) bullxit industries");
             Console.WriteLine();
 #endif
             this.ipAddress = ipAddress;
@@ -74,7 +74,7 @@ namespace bx.modbus
         	if (debug) StoreLogData.Instance.Store("modbus library initialized for Modbus-RTU, COM-Port: " + serialPort ,System.DateTime.Now);
 #if (!COMMERCIAL)
             Console.WriteLine("bx client library version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString());
-            Console.WriteLine("Copyright (c) Formula Decimal");
+            Console.WriteLine("Copyright (c) bullxit industries");
             Console.WriteLine();
 #endif
             this.serialport = new SerialPort();
@@ -94,8 +94,8 @@ namespace bx.modbus
         {
         	if (debug) StoreLogData.Instance.Store("modbus library initialized for Modbus-TCP" ,System.DateTime.Now);
 #if (!COMMERCIAL)
-            Console.WriteLine("bx client library version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString());
-            Console.WriteLine("Copyright (c) Formula Decimal");
+            Console.WriteLine("bullxit modbus client library version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString());
+            Console.WriteLine("Copyright (c) bullxit industries");
             Console.WriteLine();
 #endif
         }
