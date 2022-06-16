@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>João André Morais</Authors>
+    <Description>Biblioteca de comunicação modbus</Description>
+    <Copyright>bx 2020</Copyright>
+    <Version>1.0.1</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\bx.modbus.client\AdvancedModbusClient.cs" Link="AdvancedModbusClient.cs" />
+    <Compile Include="..\bx.modbus.client\ModbusClient.cs" Link="ModbusClient.cs" />
+    <Compile Include="..\bx.modbus.client\ModbusServer.cs" Link="ModbusServer.cs" />
+    <Compile Include="..\bx.modbus.client\StoreLogData.cs" Link="StoreLogData.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.0" />
+  </ItemGroup>
+
+</Project>

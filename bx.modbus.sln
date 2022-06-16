@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bx.modbus.client", "bx.modbus.client\bx.modbus.client.csproj", "{7657FC4A-AEDF-4F17-B3E9-0D0DFB1CE23B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bx.modbus.core", "bx.modbus.core\bx.modbus.core.csproj", "{F757F21A-56D4-47E4-9352-FAA51879DDE8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bx.modbus.client.standard", "bx.modbus.client.standard\bx.modbus.client.standard.csproj", "{64B038CE-878E-4B97-82B1-0683EA46C416}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "modbus.test", "modbus.test\modbus.test.csproj", "{3CE7F38B-B083-4527-8391-5C63C23E4244}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7657FC4A-AEDF-4F17-B3E9-0D0DFB1CE23B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7657FC4A-AEDF-4F17-B3E9-0D0DFB1CE23B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7657FC4A-AEDF-4F17-B3E9-0D0DFB1CE23B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7657FC4A-AEDF-4F17-B3E9-0D0DFB1CE23B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F757F21A-56D4-47E4-9352-FAA51879DDE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F757F21A-56D4-47E4-9352-FAA51879DDE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F757F21A-56D4-47E4-9352-FAA51879DDE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F757F21A-56D4-47E4-9352-FAA51879DDE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64B038CE-878E-4B97-82B1-0683EA46C416}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64B038CE-878E-4B97-82B1-0683EA46C416}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64B038CE-878E-4B97-82B1-0683EA46C416}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64B038CE-878E-4B97-82B1-0683EA46C416}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CE7F38B-B083-4527-8391-5C63C23E4244}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CE7F38B-B083-4527-8391-5C63C23E4244}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CE7F38B-B083-4527-8391-5C63C23E4244}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CE7F38B-B083-4527-8391-5C63C23E4244}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
+		SolutionGuid = {644EE3A7-EBD6-44A5-AAAD-6B41E1C594A6}
+	EndGlobalSection
+EndGlobal
