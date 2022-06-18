@@ -73,7 +73,7 @@ namespace bx.modbus
         {
         	if (debug) StoreLogData.Instance.Store("modbus library initialized for Modbus-RTU, COM-Port: " + serialPort ,System.DateTime.Now);
 #if (!COMMERCIAL)
-            Console.WriteLine("bx client library version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString());
+            Console.WriteLine("bx modbus client library version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString());
             Console.WriteLine("Copyright (c) bullxit industries");
             Console.WriteLine();
 #endif
@@ -185,7 +185,7 @@ namespace bx.modbus
         /// </summary>
         /// <param name="registers">Two Register values received from Modbus</param>
         /// <returns>Connected float value</returns>
-        public static float ConvertRegistersToFloat(int[] registers)
+        public static float ConvertRegistersToFloat(short[] registers)
         {
             if (registers.Length != 2)
                 throw new ArgumentException("Input Array length invalid");
@@ -208,20 +208,20 @@ namespace bx.modbus
         /// <param name="registers">Two Register values received from Modbus</param>
         /// <param name="registerOrder">Desired Word Order (Low Register first or High Register first</param>
         /// <returns>Connected float value</returns>
-        public static float ConvertRegistersToFloat(int[] registers, RegisterOrder registerOrder)
+        public static float ConvertRegistersToFloat(short[] registers, RegisterOrder registerOrder)
         {
-            int [] swappedRegisters = {registers[0],registers[1]};
+            short[] swappedRegisters = {registers[0],registers[1]};
             if (registerOrder == RegisterOrder.HighLow) 
-                swappedRegisters = new int[] {registers[1],registers[0]};
+                swappedRegisters = new short[] {registers[1],registers[0]};
             return ConvertRegistersToFloat(swappedRegisters);
         }
 
         /// <summary>
-        /// Converts two ModbusRegisters to Double
+        /// Converts two ModbusRegisters to INT32
         /// </summary>
         /// <param name="registers">Two Register values received from Modbus</param>
         /// <returns>Connected double value</returns>
-        public static Int32 ConvertRegistersToDouble(int[] registers)
+        public static Int32 ConvertRegistersToInt32(short[] registers)
         {
             if (registers.Length != 2)
                 throw new ArgumentException("Input Array length invalid");
@@ -244,12 +244,12 @@ namespace bx.modbus
         /// <param name="registers">Two Register values received from Modbus</param>
         /// <param name="registerOrder">Desired Word Order (Low Register first or High Register first</param>
         /// <returns>Connecteds double value</returns>
-        public static Int32 ConvertRegistersToDouble(int[] registers, RegisterOrder registerOrder)
+        public static Int32 ConvertRegistersToInt32(short[] registers, RegisterOrder registerOrder)
         {
-            int[] swappedRegisters = { registers[0], registers[1] };
+            short[] swappedRegisters = { registers[0], registers[1] };
             if (registerOrder == RegisterOrder.HighLow)
-                swappedRegisters = new int[] { registers[1], registers[0] };
-            return ConvertRegistersToDouble(swappedRegisters);
+                swappedRegisters = new short[] { registers[1], registers[0] };
+            return ConvertRegistersToInt32(swappedRegisters);
         }
 
         /// <summary>
@@ -257,7 +257,7 @@ namespace bx.modbus
         /// </summary>
         /// <param name="registers">four Register values received from Modbus</param>
         /// <returns>64 bit value</returns>
-        public static Int64 ConvertRegistersToLong(int[] registers)
+        public static Int64 ConvertRegistersToLong(short[] registers)
         {
             if (registers.Length != 4)
                 throw new ArgumentException("Input Array length invalid");
@@ -288,13 +288,13 @@ namespace bx.modbus
         /// <param name="registers">four Register values received from Modbus</param>
         /// <param name="registerOrder">Desired Word Order (Low Register first or High Register first</param>
         /// <returns>Connected long value</returns>
-        public static Int64 ConvertRegistersToLong(int[] registers, RegisterOrder registerOrder)
+        public static Int64 ConvertRegistersToLong(short[] registers, RegisterOrder registerOrder)
         {
             if (registers.Length != 4)
                 throw new ArgumentException("Input Array length invalid");
-            int[] swappedRegisters = { registers[0], registers[1], registers[2], registers[3] };
+            short[] swappedRegisters = { registers[0], registers[1], registers[2], registers[3] };
             if (registerOrder == RegisterOrder.HighLow)
-                swappedRegisters = new int[] { registers[3], registers[2], registers[1], registers[0] };
+                swappedRegisters = new short[] { registers[3], registers[2], registers[1], registers[0] };
             return ConvertRegistersToLong(swappedRegisters);
         }
 
@@ -303,7 +303,7 @@ namespace bx.modbus
         /// </summary>
         /// <param name="registers">four Register values received from Modbus</param>
         /// <returns>64 bit value</returns>
-        public static double ConvertRegistersToDoublePrecisionFloat(int[] registers)
+        public static double ConvertRegistersToDoublePrecisionFloat(short[] registers)
         {
             if (registers.Length != 4)
                 throw new ArgumentException("Input Array length invalid");
@@ -334,13 +334,13 @@ namespace bx.modbus
         /// <param name="registers">four Register values received from Modbus</param>
         /// <param name="registerOrder">Desired Word Order (Low Register first or High Register first</param>
         /// <returns>Connected double prec. float value</returns>
-        public static double ConvertRegistersToDoublePrecisionFloat(int[] registers, RegisterOrder registerOrder)
+        public static double ConvertRegistersToDoublePrecisionFloat(short[] registers, RegisterOrder registerOrder)
         {
             if (registers.Length != 4)
                 throw new ArgumentException("Input Array length invalid");
-            int[] swappedRegisters = { registers[0], registers[1], registers[2], registers[3] };
+            short[] swappedRegisters = { registers[0], registers[1], registers[2], registers[3] };
             if (registerOrder == RegisterOrder.HighLow)
-                swappedRegisters = new int[] { registers[3], registers[2], registers[1], registers[0] };
+                swappedRegisters = new short[] { registers[3], registers[2], registers[1], registers[0] };
             return ConvertRegistersToDoublePrecisionFloat(swappedRegisters);
         }
 
@@ -349,7 +349,7 @@ namespace bx.modbus
         /// </summary>
         /// <param name="floatValue">Float value which has to be converted into two registers</param>
         /// <returns>Register values</returns>
-        public static int[] ConvertFloatToTwoRegisters(float floatValue)
+        public static short[] ConvertFloatToTwoRegisters(float floatValue)
         {
             byte[] floatBytes = BitConverter.GetBytes(floatValue);
             byte[] highRegisterBytes = 
@@ -367,10 +367,10 @@ namespace bx.modbus
                 0,
                 0
             };
-            int[] returnValue =
+            short[] returnValue =
             {
-                BitConverter.ToInt32(lowRegisterBytes,0),
-                BitConverter.ToInt32(highRegisterBytes,0)
+                BitConverter.ToInt16(lowRegisterBytes,0),
+                BitConverter.ToInt16(highRegisterBytes,0)
             };
             return returnValue;
         }
@@ -381,12 +381,12 @@ namespace bx.modbus
         /// <param name="floatValue">Float value which has to be converted into two registers</param>
         /// <param name="registerOrder">Desired Word Order (Low Register first or High Register first</param>
         /// <returns>Register values</returns>
-        public static int[] ConvertFloatToTwoRegisters(float floatValue, RegisterOrder registerOrder)
+        public static short[] ConvertFloatToTwoRegisters(float floatValue, RegisterOrder registerOrder)
         {
-            int[] registerValues = ConvertFloatToTwoRegisters(floatValue);
-            int[] returnValue = registerValues;
+            short[] registerValues = ConvertFloatToTwoRegisters(floatValue);
+            short[] returnValue = registerValues;
             if (registerOrder == RegisterOrder.HighLow)
-                returnValue = new Int32[] { registerValues[1], registerValues[0] };
+                returnValue = new Int16[] { registerValues[1], registerValues[0] };
             return returnValue;
         }
 
@@ -395,7 +395,7 @@ namespace bx.modbus
         /// </summary>
         /// <param name="doubleValue">Double value which has to be converted into two registers</param>
         /// <returns>Register values</returns>
-        public static int[] ConvertDoubleToTwoRegisters(Int32 doubleValue)
+        public static short[] ConvertDoubleToTwoRegisters(Int32 doubleValue)
         {
             byte[] doubleBytes = BitConverter.GetBytes(doubleValue);
             byte[] highRegisterBytes = 
@@ -413,10 +413,10 @@ namespace bx.modbus
                 0,
                 0
             };
-            int[] returnValue =
+            short[] returnValue =
             {
-                BitConverter.ToInt32(lowRegisterBytes,0),
-                BitConverter.ToInt32(highRegisterBytes,0)
+                BitConverter.ToInt16(lowRegisterBytes,0),
+                BitConverter.ToInt16(highRegisterBytes,0)
             };
             return returnValue;
         }
@@ -427,12 +427,12 @@ namespace bx.modbus
         /// <param name="doubleValue">Double value which has to be converted into two registers</param>
         /// <param name="registerOrder">Desired Word Order (Low Register first or High Register first</param>
         /// <returns>Register values</returns>
-        public static int[] ConvertDoubleToTwoRegisters(Int32 doubleValue, RegisterOrder registerOrder)
+        public static short[] ConvertDoubleToTwoRegisters(Int32 doubleValue, RegisterOrder registerOrder)
         {
-            int[] registerValues = ConvertDoubleToTwoRegisters(doubleValue);
-            int[] returnValue = registerValues;
+            short[] registerValues = ConvertDoubleToTwoRegisters(doubleValue);
+            short[] returnValue = registerValues;
             if (registerOrder == RegisterOrder.HighLow)
-                returnValue = new Int32[] { registerValues[1], registerValues[0] };
+                returnValue = new Int16[] { registerValues[1], registerValues[0] };
             return returnValue;
         }
 
@@ -443,7 +443,7 @@ namespace bx.modbus
         /// </summary>
         /// <param name="longValue">long value which has to be converted into four registers</param>
         /// <returns>Register values</returns>
-        public static int[] ConvertLongToTwoRegisters(Int64 longValue)
+        public static short[] ConvertLongToTwoRegisters(Int64 longValue)
         {
             byte[] longBytes = BitConverter.GetBytes(longValue);
             byte[] highRegisterBytes =
@@ -475,12 +475,12 @@ namespace bx.modbus
                 0,
                 0
             };
-            int[] returnValue =
+            short[] returnValue =
             {
-                BitConverter.ToInt32(lowRegisterBytes,0),
-                BitConverter.ToInt32(lowHighRegisterBytes,0),
-                BitConverter.ToInt32(highLowRegisterBytes,0),
-                BitConverter.ToInt32(highRegisterBytes,0)
+                BitConverter.ToInt16(lowRegisterBytes,0),
+                BitConverter.ToInt16(lowHighRegisterBytes,0),
+                BitConverter.ToInt16(highLowRegisterBytes,0),
+                BitConverter.ToInt16(highRegisterBytes,0)
             };
             return returnValue;
         }
@@ -491,12 +491,12 @@ namespace bx.modbus
         /// <param name="longValue">long value which has to be converted into four registers</param>
         /// <param name="registerOrder">Desired Word Order (Low Register first or High Register first</param>
         /// <returns>Register values</returns>
-        public static int[] ConvertLongToTwoRegisters(Int64 longValue, RegisterOrder registerOrder)
+        public static short[] ConvertLongToTwoRegisters(Int64 longValue, RegisterOrder registerOrder)
         {
-            int[] registerValues = ConvertLongToTwoRegisters(longValue);
-            int[] returnValue = registerValues;
+            short[] registerValues = ConvertLongToTwoRegisters(longValue);
+            short[] returnValue = registerValues;
             if (registerOrder == RegisterOrder.HighLow)
-                returnValue = new int[] { registerValues[3], registerValues[2], registerValues[1], registerValues[0] };
+                returnValue = new short[] { registerValues[3], registerValues[2], registerValues[1], registerValues[0] };
             return returnValue;
         }
 
@@ -505,7 +505,7 @@ namespace bx.modbus
         /// </summary>
         /// <param name="doubleValue">double value which has to be converted into four registers</param>
         /// <returns>Register values</returns>
-        public static int[] ConvertDoublePrecisionFloatToTwoRegisters(double doubleValue)
+        public static short[] ConvertDoublePrecisionFloatToTwoRegisters(double doubleValue)
         {
             byte[] doubleBytes = BitConverter.GetBytes(doubleValue);
             byte[] highRegisterBytes =
@@ -537,12 +537,12 @@ namespace bx.modbus
                 0,
                 0
             };
-            int[] returnValue =
+            short[] returnValue =
             {
-                BitConverter.ToInt32(lowRegisterBytes,0),
-                BitConverter.ToInt32(lowHighRegisterBytes,0),
-                BitConverter.ToInt32(highLowRegisterBytes,0),
-                BitConverter.ToInt32(highRegisterBytes,0)
+                BitConverter.ToInt16(lowRegisterBytes,0),
+                BitConverter.ToInt16(lowHighRegisterBytes,0),
+                BitConverter.ToInt16(highLowRegisterBytes,0),
+                BitConverter.ToInt16(highRegisterBytes,0)
             };
             return returnValue;
         }
@@ -553,12 +553,12 @@ namespace bx.modbus
         /// <param name="doubleValue">double value which has to be converted into four registers</param>
         /// <param name="registerOrder">Desired Word Order (Low Register first or High Register first</param>
         /// <returns>Register values</returns>
-        public static int[] ConvertDoublePrecisionFloatToTwoRegisters(double doubleValue, RegisterOrder registerOrder)
+        public static short[] ConvertDoublePrecisionFloatToTwoRegisters(double doubleValue, RegisterOrder registerOrder)
         {
-            int[] registerValues = ConvertDoublePrecisionFloatToTwoRegisters(doubleValue);
-            int[] returnValue = registerValues;
+            short[] registerValues = ConvertDoublePrecisionFloatToTwoRegisters(doubleValue);
+            short[] returnValue = registerValues;
             if (registerOrder == RegisterOrder.HighLow)
-                returnValue = new int[] { registerValues[3], registerValues[2], registerValues[1], registerValues[0] };
+                returnValue = new short[] { registerValues[3], registerValues[2], registerValues[1], registerValues[0] };
             return returnValue;
         }
 
@@ -569,7 +569,7 @@ namespace bx.modbus
         /// <param name="offset">First Register containing the String to convert</param>
         /// <param name="stringLength">number of characters in String (must be even)</param>
         /// <returns>Converted String</returns>
-        public static string ConvertRegistersToString(int[] registers, int offset, int stringLength)
+        public static string ConvertRegistersToString(short[] registers, int offset, int stringLength)
         { 
         byte[] result = new byte[stringLength];
         byte[] registerResult = new byte[2];
@@ -588,16 +588,16 @@ namespace bx.modbus
         /// </summary>
         /// <param name="registers">Register array received via Modbus</param>
         /// <returns>Converted String</returns>
-        public static int[] ConvertStringToRegisters(string stringToConvert)
+        public static short[] ConvertStringToRegisters(string stringToConvert)
         {
             byte[] array = System.Text.Encoding.ASCII.GetBytes(stringToConvert);
-            int[] returnarray = new int[stringToConvert.Length / 2 + stringToConvert.Length % 2];
+            short[] returnarray = new short[stringToConvert.Length / 2 + stringToConvert.Length % 2];
             for (int i = 0; i < returnarray.Length; i++)
             {
                 returnarray[i] = array[i * 2];
                 if (i*2 +1< array.Length)
                 {
-                    returnarray[i] = returnarray[i] | ((int)array[i * 2 + 1] << 8);
+                    returnarray[i] = (short)(returnarray[i] | ((int)array[i * 2 + 1] << 8));
                 }
             }
             return returnarray;
@@ -1100,7 +1100,7 @@ namespace bx.modbus
 		/// <param name="startingAddress">First holding register to be read</param>
 		/// <param name="quantity">Number of holding registers to be read</param>
 		/// <returns>Int Array which contains the holding registers</returns>
-		public int[] ReadHoldingRegisters(int startingAddress, int quantity)
+		public Int16[] ReadHoldingRegisters(int startingAddress, int quantity)
 		{
 			if (debug) StoreLogData.Instance.Store("FC3 (Read Holding Registers from Master device), StartingAddress: "+ startingAddress+", Quantity: " +quantity, System.DateTime.Now);
             transactionIdentifierInternal++;
@@ -1120,7 +1120,7 @@ namespace bx.modbus
 				if (debug) StoreLogData.Instance.Store("ArgumentException Throwed", System.DateTime.Now);
 				throw new ArgumentException("Starting address must be 0 - 65535; quantity must be 0 - 125");
 			}
-			int[] response;
+			Int16[] response;
 			this.transactionIdentifier = BitConverter.GetBytes((uint)transactionIdentifierInternal);
 			this.protocolIdentifier = BitConverter.GetBytes((int) 0x0000);
 			this.length = BitConverter.GetBytes((int)0x0006);
@@ -1248,7 +1248,7 @@ namespace bx.modbus
                     throw new TimeoutException("No Response from Modbus Slave");
                 }
             }
-			response = new int[quantity];
+			response = new Int16[quantity];
 			for (int i = 0; i < quantity; i++)
 			{
 				byte lowByte;
@@ -1270,7 +1270,7 @@ namespace bx.modbus
 		/// <param name="startingAddress">First input register to be read</param>
 		/// <param name="quantity">Number of input registers to be read</param>
 		/// <returns>Int Array which contains the input registers</returns>
-		public int[] ReadInputRegisters(int startingAddress, int quantity)
+		public Int16[] ReadInputRegisters(int startingAddress, int quantity)
 		{
 			if (debug) StoreLogData.Instance.Store("FC4 (Read Input Registers from Master device), StartingAddress: "+ startingAddress+", Quantity: " +quantity, System.DateTime.Now);
             transactionIdentifierInternal++;
@@ -1290,7 +1290,7 @@ namespace bx.modbus
 				if (debug) StoreLogData.Instance.Store("ArgumentException Throwed", System.DateTime.Now);
 				throw new ArgumentException("Starting address must be 0 - 65535; quantity must be 0 - 125");
 			}
-			int[] response;
+            Int16[] response;
 			this.transactionIdentifier = BitConverter.GetBytes((uint)transactionIdentifierInternal);
 			this.protocolIdentifier = BitConverter.GetBytes((int) 0x0000);
 			this.length = BitConverter.GetBytes((int)0x0006);
@@ -1420,7 +1420,7 @@ namespace bx.modbus
                     throw new TimeoutException("No Response from Modbus Slave");
                 }
             }
-			response = new int[quantity];
+			response = new Int16[quantity];
 			for (int i = 0; i < quantity; i++)
 			{
 				byte lowByte;
